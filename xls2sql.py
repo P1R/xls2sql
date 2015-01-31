@@ -35,13 +35,13 @@ if __name__ == "__main__":
             print str(Horas)+":"+str(Minutos)+":"+str(Segundos),
             print sh.cell_value(rowx=i,colx=3)
             if i < (sh.nrows-1):
-                OuFile.writelines("("+str(sh.cell_value(rowx=i,colx=0))+", '"+str(Anio)+"-"+str(Mes)
+                OuFile.writelines("('"+str(sh.cell_value(rowx=i,colx=0))+"', '"+str(Anio)+"-"+str(Mes)
                         +"-"+str(Dia)+" "+str(Horas)+":"+str(Minutos)+":"
-                        +str(Segundos)+"', "+str(sh.cell_value(rowx=i,colx=3))+"),\n")
+                        +str(Segundos)+"', '"+str(sh.cell_value(rowx=i,colx=3))+"'),\n")
             else:
-                OuFile.writelines("("+str(sh.cell_value(rowx=i,colx=0))+", '"+str(Anio)+"-"+str(Mes)
+                OuFile.writelines("('"+str(sh.cell_value(rowx=i,colx=0))+"', '"+str(Anio)+"-"+str(Mes)
                         +"-"+str(Dia)+" "+str(Horas)+":"+str(Minutos)+":"
-                        +str(Segundos)+"', "+str(sh.cell_value(rowx=i,colx=3))+");\n")
+                        +str(Segundos)+"', '"+str(sh.cell_value(rowx=i,colx=3))+"');\n")
 
 #rescribimos el nombre del archivo agregando anio+mes+sql
         os.rename('first',(sys.argv[1].split(".")[0])+str(Anio)+"-"+str(Mes)+".sql")
