@@ -6,7 +6,7 @@ from os import rename
 __author__ = 'p1r0'
 
 
-Help="ERROR - malos parametros:(\n\t la forma de uso es: xls2sql.py archivo.xlsx"
+Help="ERROR - malos parametros:(\n\t la forma de uso es: xls2sql.py archivo.xlsx\n Nota: No puntos y no espacios en 'archivo' formato es archivo.xlsx"
 
 if __name__ == "__main__":
     if(len(sys.argv) == 2):
