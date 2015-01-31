@@ -1,10 +1,10 @@
 #!/usr/bin/env python2
+import sys
+import xlrd
+from os import rename
 
 __author__ = 'p1r0'
 
-import sys
-import xlrd
-import os
 
 Help="ERROR - malos parametros:(\n\t la forma de uso es: xls2sql.py archivo.xlsx"
 
@@ -49,7 +49,9 @@ if __name__ == "__main__":
                         +str(Segundos)+"', '"+str(sh.cell_value(rowx=i,colx=3))+"');\n")
 
         print "hecho! ;)"
+#cerramos el archivo de salida
+        OuFile.close()
 #rescribimos el nombre del archivo agregando anio+mes+sql
-        os.rename('first',(sys.argv[1].split(".")[0])+str(Anio)+"-"+str(Mes)+".sql")
+        rename('first',(sys.argv[1].split(".")[0])+str(Anio)+"-"+str(Mes)+".sql")
     else:
         print Help
