@@ -25,10 +25,10 @@ if __name__ == "__main__":
         for i in range(1,sh.nrows):
             print "la fila "+str(i)+" tiene:"+sh.cell_value(rowx=i, colx=0),
             Fecha = xlrd.xldate.xldate_as_tuple(sh.cell_value(rowx=i,colx=1),0)
-            Anio, Mes, Dia = Fecha[0], Fecha[1], Fecha[2]
+            Anio, Mes, Dia = Fecha[0], "%02d"%Fecha[1], "%02d"%Fecha[2]
             if i == 1:
                 OuFile.writelines("Insert Into medi"+str(Anio)+str(Mes)
-                        +"(eq_id,med_fecha,med_kwh) Values\n") 
+                        +"\n(eq_id,med_fecha,med_kwh) Values\n") 
             print str(Dia)+"-"+str(Mes)+"-"+str(Anio),
             Hora = xlrd.xldate.xldate_as_tuple(sh.cell_value(rowx=i,colx=2),0) 
             Horas, Minutos, Segundos =  "%02d"%Hora[3], "%02d"%Hora[4], "%02d"%Hora[5]
