@@ -22,16 +22,26 @@ if __name__ == "__main__":
         sh = book.sheet_by_index(0)
 #Imprimimos  nombre de hoja, filas y columnas
         print sh.name, sh.nrows, sh.ncols
-        OuFile.writelines("first try")
         for i in range(1,sh.nrows):
             print "la fila "+str(i)+" tiene:"+sh.cell_value(rowx=i, colx=0),
             Fecha = xlrd.xldate.xldate_as_tuple(sh.cell_value(rowx=i,colx=1),0)
             Anio, Mes, Dia = Fecha[0], Fecha[1], Fecha[2]
+            if i == 1:
+                OuFile.writelines("Insert Into medi"+str(Anio)+str(Mes)
+                        +"(eq_id,med_fecha,med_kwh) Values\n") 
             print str(Dia)+"-"+str(Mes)+"-"+str(Anio),
             Hora = xlrd.xldate.xldate_as_tuple(sh.cell_value(rowx=i,colx=2),0) 
             Horas, Minutos, Segundos =  "%02d"%Hora[3], "%02d"%Hora[4], "%02d"%Hora[5]
             print str(Horas)+":"+str(Minutos)+":"+str(Segundos),
             print sh.cell_value(rowx=i,colx=3)
+            if i < (sh.nrows-1):
+                OuFile.writelines("("+str(sh.cell_value(rowx=i,colx=0))+", '"+str(Anio)+"-"+str(Mes)
+                        +"-"+str(Dia)+" "+str(Horas)+":"+str(Minutos)+":"
+                        +str(Segundos)+"', "+str(sh.cell_value(rowx=i,colx=3))+"),\n")
+            else:
+                OuFile.writelines("("+str(sh.cell_value(rowx=i,colx=0))+", '"+str(Anio)+"-"+str(Mes)
+                        +"-"+str(Dia)+" "+str(Horas)+":"+str(Minutos)+":"
+                        +str(Segundos)+"', "+str(sh.cell_value(rowx=i,colx=3))+");\n")
 
 #rescribimos el nombre del archivo agregando anio+mes+sql
         os.rename('first',(sys.argv[1].split(".")[0])+str(Anio)+"-"+str(Mes)+".sql")
